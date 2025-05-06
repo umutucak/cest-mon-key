@@ -1,26 +1,25 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class monkey_move : MonoBehaviour
 {
-    Animator playerAnim;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Animator animator;
     void Start()
     {
-        playerAnim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Keyboard.current.qKey.wasPressedThisFrame)
         {
-            playerAnim.SetBool("dance", true);
-            playerAnim.SetBool("groin", false);
+            animator.SetBool("dance", true);
+            animator.SetBool("groin", false);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            playerAnim.SetBool("dance", false);
-            playerAnim.SetBool("groin", true);
+            animator.SetBool("dance", false);
+            animator.SetBool("groin", true);
         }
     }
 }
