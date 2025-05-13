@@ -56,7 +56,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MrMo_A
+  m_Name: greeting_monkey
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: dance
@@ -130,7 +130,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5a7b75f10ad6548e59692d8a7956ead7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 243b74267234b4c179e9dd7baf869da2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
