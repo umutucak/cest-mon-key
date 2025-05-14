@@ -9,17 +9,17 @@ public class monkey_move : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void Update()
-    {
-        if (Keyboard.current.qKey.wasPressedThisFrame)
-        {
-            animator.SetBool("dance", true);
-            animator.SetBool("groin", false);
-        }
-        if (Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            animator.SetBool("dance", false);
-            animator.SetBool("groin", true);
-        }
-    }
+    // void Update()
+    // {
+    //     if (Keyboard.current.qKey.wasPressedThisFrame)
+    //     {
+    //         animator.SetBool("dance", true);
+    //         animator.SetBool("groin", false);
+    //     }
+    //     if (Keyboard.current.eKey.wasPressedThisFrame)
+    //     {
+    //         animator.SetBool("dance", false);
+    //         animator.SetBool("groin", true);
+    //     }
+    // }
 }

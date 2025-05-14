@@ -5,6 +5,8 @@ public class CameraScript : MonoBehaviour
     Ray ray;
     Camera camera;
     public GameObject fuckingMonkey;
+    public GreetingSpeech greetingSpeech;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,12 +18,15 @@ public class CameraScript : MonoBehaviour
     {   
         RaycastHit hit;
         ray = camera.ScreenPointToRay(Input.mousePosition);
-        // if left click
-        if (Input.GetMouseButtonDown(0))
+        // if press E
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (Physics.Raycast(ray, out hit, 5))
             {
-                Transform objectHit = hit.transform;
+                if (hit.collider.name == "GreetingMonkey")
+                {
+                    greetingSpeech.ContinueDialogue();
+                }
             }
             return;
         }
@@ -32,10 +37,12 @@ public class CameraScript : MonoBehaviour
             if (hit.collider.name == "GreetingMonkey" && hit.distance < 5)
             {
                 fuckingMonkey = hit.transform.Find("InteractionText").gameObject;
+                // Debug.Log(true, fuckingMonkey);
                 fuckingMonkey.SetActive(true);
             }
             else
             {
+                // Debug.Log(fuckingMonkey);
                 fuckingMonkey.SetActive(false);
             }
         }
