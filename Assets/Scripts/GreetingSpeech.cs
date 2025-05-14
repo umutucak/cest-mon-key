@@ -3,7 +3,6 @@ using TMPro;
 
 public class GreetingSpeech : MonoBehaviour
 {
-    public GameObject me;
     private TMP_Text tmp;
     // public TMP_Text tmp;
     private string[] dialogue = {
@@ -20,7 +19,7 @@ public class GreetingSpeech : MonoBehaviour
     private int dialogueCounter = 0;
     void Start()
     {
-        tmp = me.GetComponent<TMP_Text>();
+        tmp = gameObject.GetComponent<TMP_Text>();
     }
     
     public void ContinueDialogue()

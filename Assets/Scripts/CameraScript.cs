@@ -6,6 +6,10 @@ public class CameraScript : MonoBehaviour
     Camera camera;
     public GameObject fuckingMonkey;
     public GreetingSpeech greetingSpeech;
+    public LightHouseMonkey lighthouseMonkey;
+    public GameObject hand;
+
+    private float leftClickTimer = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +20,7 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        HandTimer();
         RaycastHit hit;
         ray = camera.ScreenPointToRay(Input.mousePosition);
         // if press E
@@ -30,21 +35,40 @@ public class CameraScript : MonoBehaviour
             }
             return;
         }
+        // if left click
+        if (Input.GetMouseButtonDown(0))
+        {
+            leftClickTimer = Time.time;
+            hand.SetActive(true);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.name == "LightHouseMonkey")
+                {
+                    lighthouseMonkey.Caught();
+                }
+            }
+        }
 
         // always passive raycasting
         if (Physics.Raycast(ray, out hit))
         {
             if (hit.collider.name == "GreetingMonkey" && hit.distance < 5)
             {
-                fuckingMonkey = hit.transform.Find("InteractionText").gameObject;
-                // Debug.Log(true, fuckingMonkey);
                 fuckingMonkey.SetActive(true);
             }
             else
             {
-                // Debug.Log(fuckingMonkey);
                 fuckingMonkey.SetActive(false);
             }
+        }
+    }
+
+    private void HandTimer()
+    {
+        if (leftClickTimer > 0 && Time.time - leftClickTimer >= 1)
+        {
+            leftClickTimer = 0;
+            hand.SetActive(false);
         }
     }
 }
