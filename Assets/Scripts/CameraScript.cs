@@ -8,6 +8,7 @@ public class CameraScript : MonoBehaviour
     public GreetingSpeech greetingSpeech;
     public LightHouseMonkey lighthouseMonkey;
     public GameObject hand;
+    public Boat boat;
 
     private float leftClickTimer = 0;
 
@@ -31,6 +32,10 @@ public class CameraScript : MonoBehaviour
                 if (hit.collider.name == "GreetingMonkey")
                 {
                     greetingSpeech.ContinueDialogue();
+                }
+                else if (hit.collider.name == "WoodBoat")
+                {
+                    boat.LiftOff();
                 }
             }
             return;
