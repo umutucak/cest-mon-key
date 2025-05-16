@@ -10,7 +10,6 @@ public class LightHouseMonkey : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        // tmp = gameObject.GetChild(-1);
     }
 
     void Update()
@@ -20,13 +19,13 @@ public class LightHouseMonkey : MonoBehaviour
         {
             time = 0;
             gameObject.SetActive(false);
+            
         }
     }
 
     public void Caught()
     {
         time = Time.time;
-        Debug.Log("setting " + tmp + " to dwad");
         tmp.text = "BUT IM NOT DOOOOOONEEEEEE";
         animator.SetBool("dance", false);
         animator.SetBool("groin", true);

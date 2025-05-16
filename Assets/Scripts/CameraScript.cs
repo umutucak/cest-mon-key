@@ -9,6 +9,7 @@ public class CameraScript : MonoBehaviour
     public LightHouseMonkey lighthouseMonkey;
     public GameObject hand;
     public Boat boat;
+    public Announcer announcer;
 
     private float leftClickTimer = 0;
 
