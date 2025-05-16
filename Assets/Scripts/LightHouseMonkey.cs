@@ -6,6 +6,7 @@ public class LightHouseMonkey : MonoBehaviour
     // public LightHouseMonkey me;
     Animator animator;
     public TMP_Text tmp;
+    public Announcer announcer;
     float time = 0;
     void Start()
     {
@@ -29,5 +30,6 @@ public class LightHouseMonkey : MonoBehaviour
         tmp.text = "BUT IM NOT DOOOOOONEEEEEE";
         animator.SetBool("dance", false);
         animator.SetBool("groin", true);
+        announcer.Play("monkey");
     }
 }

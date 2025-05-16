@@ -1,10 +1,7 @@
 using UnityEngine;
 
 public class Boat : MonoBehaviour
-{
-
-    public BoatMonkey boatMonkey;
-    
+{    
     // Transforms to act as start and end markers for the journey.
     public Transform startMarker;
     public Transform endMarker;
@@ -30,6 +27,5 @@ public class Boat : MonoBehaviour
     public void LiftOff()
     {
         weHaveLiftOff = true;
-        boatMonkey.gameObject.SetActive(true);
     }
 }

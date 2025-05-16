@@ -7,6 +7,7 @@ public class CameraScript : MonoBehaviour
     public GameObject fuckingMonkey;
     public GreetingSpeech greetingSpeech;
     public LightHouseMonkey lighthouseMonkey;
+    public BoatMonkey boatMonkey;
     public GameObject hand;
     public Boat boat;
     public Announcer announcer;
@@ -37,6 +38,11 @@ public class CameraScript : MonoBehaviour
                 else if (hit.collider.name == "WoodBoat")
                 {
                     boat.LiftOff();
+                    boatMonkey.gameObject.SetActive(true);
+                }
+                else if (hit.collider.name == "BoatMonkey")
+                {
+                    boatMonkey.Caught();
                 }
             }
             return;
