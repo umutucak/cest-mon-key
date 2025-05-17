@@ -12,6 +12,8 @@ public class CameraScript : MonoBehaviour
     public GameObject rightHand;
     public Boat boat;
     public Announcer announcer;
+    public Door1 door1;
+    public Door2 door2;
 
     private float leftHandTimer = 0;
     private float rightHandTimer = 0;
@@ -47,6 +49,16 @@ public class CameraScript : MonoBehaviour
                 else if (hit.collider.name == "BoatMonkey")
                 {
                     boatMonkey.Caught();
+                }
+                else if (hit.collider.name == "Door1" && !door1.triggered)
+                {
+                    door1.triggered = true;
+                    announcer.Play("block");
+                }
+                else if (hit.collider.name == "Door2" && !door2.triggered)
+                {
+                    door2.triggered = true;
+                    announcer.Play("block");
                 }
             }
             return;

@@ -21,7 +21,7 @@ public class Announcer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && audioManager.Count == 1)
         {
             source.Stop();
         }
