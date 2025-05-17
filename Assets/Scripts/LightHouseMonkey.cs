@@ -8,6 +8,8 @@ public class LightHouseMonkey : MonoBehaviour
     public TMP_Text tmp;
     public Announcer announcer;
     float time = 0;
+    private bool isCaught = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -26,10 +28,14 @@ public class LightHouseMonkey : MonoBehaviour
 
     public void Caught()
     {
-        time = Time.time;
-        tmp.text = "BUT IM NOT DOOOOOONEEEEEE";
-        animator.SetBool("dance", false);
-        animator.SetBool("groin", true);
-        announcer.Play("monkey");
+        if (!isCaught)
+        {
+            isCaught = true;
+            time = Time.time;
+            tmp.text = "BUT IM NOT DOOOOOONEEEEEE";
+            animator.SetBool("dance", false);
+            animator.SetBool("groin", true);
+            announcer.Play("monkey");
+        }
     }
 }

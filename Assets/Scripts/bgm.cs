@@ -5,7 +5,7 @@ using UnityEngine;
 public class bgm: MonoBehaviour
 {
 	public AudioClip[] sounds;
-	public GameObject announcer;
+	public Announcer announcer;
 	private AudioSource announceSource;
 	private float volumeDefault;
 	private AudioSource source;
@@ -20,13 +20,14 @@ public class bgm: MonoBehaviour
 
 	private void Update(){
 		if (announceSource.isPlaying)
-		{
 			source.volume = volumeDefault / 5;
-		}
-		else
-		{
+		else if (announcer.finalFINAL)
 			source.volume = volumeDefault;
-		}
+		else if (announcer.final)
+			source.volume = 0.1f;
+		else
+			source.volume = volumeDefault;
+		
 		if (!source.isPlaying){
 			AudioClip clip = sounds[Random.Range(0, sounds.Length-1)];
 			source.PlayOneShot(clip);

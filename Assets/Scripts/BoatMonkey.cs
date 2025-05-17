@@ -8,11 +8,11 @@ public class BoatMonkey : MonoBehaviour
     private Vector3 startScale = new Vector3(0.2f, 0.2f, 0.2f);
     private Vector3 finalScale = new Vector3(0.5f, 0.5f, 0.5f);
     public Announcer announcer;
+    private bool isCaught = false;
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("updating");
         if (scaling)
             Scale();
             return;
@@ -20,12 +20,15 @@ public class BoatMonkey : MonoBehaviour
 
     public void Caught()
     {
-        announcer.Play("monkey");
+        if (!isCaught)
+        {
+            isCaught = true;
+            announcer.Play("monkey");
+        }
     }
 
     void Scale()
     {
-        Debug.Log("scaling!");
         elapsedTime += Time.deltaTime;
         float t = Mathf.Clamp01(elapsedTime / duration); // Normalize time 0 to 1
         transform.localScale = Vector3.Lerp(startScale, finalScale, t);

@@ -8,12 +8,17 @@ public class CameraScript : MonoBehaviour
     public GreetingSpeech greetingSpeech;
     public LightHouseMonkey lighthouseMonkey;
     public BoatMonkey boatMonkey;
+    public RockMonkey rockMonkey;
+    public MountainMonkey mountainMonkey;
+    public TreeMonkey treeMonkey;
     public GameObject leftHand;
     public GameObject rightHand;
     public Boat boat;
     public Announcer announcer;
     public Door1 door1;
     public Door2 door2;
+    public Tent tent;
+    public Campfire campfire;
 
     private float leftHandTimer = 0;
     private float rightHandTimer = 0;
@@ -50,6 +55,10 @@ public class CameraScript : MonoBehaviour
                 {
                     boatMonkey.Caught();
                 }
+                else if (hit.collider.name == "RockMonkey")
+                {
+                    rockMonkey.Caught();
+                }
                 else if (hit.collider.name == "Door1" && !door1.triggered)
                 {
                     door1.triggered = true;
@@ -58,6 +67,16 @@ public class CameraScript : MonoBehaviour
                 else if (hit.collider.name == "Door2" && !door2.triggered)
                 {
                     door2.triggered = true;
+                    announcer.Play("block");
+                }
+                else if (hit.collider.name == "Tent" && !tent.triggered)
+                {
+                    tent.triggered = true;
+                    announcer.Play("block");
+                }
+                else if (hit.collider.name == "CampFire" && !campfire.triggered)
+                {
+                    campfire.triggered = true;
                     announcer.Play("block");
                 }
             }
@@ -73,6 +92,14 @@ public class CameraScript : MonoBehaviour
                 if (hit.collider.name == "LightHouseMonkey")
                 {
                     lighthouseMonkey.Caught();
+                }
+                else if (hit.collider.name == "MountainMonkey")
+                {
+                    mountainMonkey.Caught();
+                }
+                else if (hit.collider.name == "TreeMonkey")
+                {
+                    treeMonkey.Caught();
                 }
             }
         }

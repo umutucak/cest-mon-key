@@ -13,6 +13,8 @@ public class Announcer : MonoBehaviour
     private bool exitLineRead = false;
     public bgm bgm_;
     private Queue<AudioClip> audioManager = new Queue<AudioClip>();
+    public bool final = false;
+    public bool finalFINAL = false;
 
     void Start()
     {
@@ -21,7 +23,11 @@ public class Announcer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && audioManager.Count == 1)
+        if (final && !source.isPlaying)
+        {
+            finalFINAL = true;
+        }
+        if (Input.GetMouseButtonDown(1) && (audioManager.Count == 1 || final))
         {
             source.Stop();
         }
@@ -30,6 +36,8 @@ public class Announcer : MonoBehaviour
             AudioClip audio = audioManager.Dequeue();
             if (audioManager.Count == 1)
                 godIsSkyping = true;
+            else
+                godIsSkyping = false;
             source.PlayOneShot(audio);
         }
         if (source.isPlaying && godCanSkypeCall)
@@ -38,13 +46,6 @@ public class Announcer : MonoBehaviour
         {
             godCanSkypeCall = false;
             godCorner.SetActive(false);
-        }
-
-        if (monkeyCounter >= 5 && !exitLineRead && !source.isPlaying)
-        {
-            audioManager.Enqueue(announcements[13]);
-            audioManager.Enqueue(announcements[6]);
-            exitLineRead = true;
         }
         if (exitLineRead && !source.isPlaying)
         {
@@ -69,22 +70,36 @@ public class Announcer : MonoBehaviour
         else if (audio_type == "block")
         {
             i = 7 + blockCounter;
-            blockCounter++;
             godCanSkypeCall = true;
         }
-        if (blockCounter >= 5 && !exitLineRead && !source.isPlaying)
+        Debug.Log("block is now " + blockCounter);
+        if (i == 0)
+            audioManager.Enqueue(announcements[i]);
+        else if (blockCounter >= 5 && !exitLineRead)
         {
             bgm_.gameObject.SetActive(false);
             audioManager.Enqueue(announcements[13]);
             audioManager.Enqueue(announcements[12]);
             exitLineRead = true;
         }
-        else if (i == 0)
+        else if (monkeyCounter >= 5 && !exitLineRead)
+        {
+            final = true;
+            audioManager.Enqueue(announcements[13]);
             audioManager.Enqueue(announcements[i]);
+            audioManager.Enqueue(announcements[6]);
+            exitLineRead = true;
+        }
         else
         {
             audioManager.Enqueue(announcements[13]);
             audioManager.Enqueue(announcements[i]);
+
         }
+        if (audio_type == "block")
+        {
+            blockCounter++;
+        }
+
     }
 }
