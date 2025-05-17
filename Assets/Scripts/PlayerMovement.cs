@@ -7,19 +7,21 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Camera playerCamera;
-    public float walkSpeed = 6f;
-    public float runSpeed = 12f;
-    public float lookSpeed = 2f;
-    public float lookXLimit = 45f;
+    public float walkSpeed;
+    public float runSpeed;
+    public float lookSpeed;
+    public float lookXLimit;
 
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
     private CharacterController characterController;
+    AudioSource footsteps;
 
     private bool canMove = true;
 
     void Start()
     {
+        footsteps = GetComponent<AudioSource>();
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -38,6 +40,10 @@ public class PlayerMovement : MonoBehaviour
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
         characterController.SimpleMove(moveDirection);
+        if (moveDirection.magnitude > 0)
+            footsteps.enabled = true;
+        else
+            footsteps.enabled = false;
         // camera
         rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
         rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);

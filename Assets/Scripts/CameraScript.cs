@@ -8,11 +8,13 @@ public class CameraScript : MonoBehaviour
     public GreetingSpeech greetingSpeech;
     public LightHouseMonkey lighthouseMonkey;
     public BoatMonkey boatMonkey;
-    public GameObject hand;
+    public GameObject leftHand;
+    public GameObject rightHand;
     public Boat boat;
     public Announcer announcer;
 
-    private float leftClickTimer = 0;
+    private float leftHandTimer = 0;
+    private float rightHandTimer = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +31,8 @@ public class CameraScript : MonoBehaviour
         // if press E
         if (Input.GetKeyDown(KeyCode.E))
         {
+            leftHandTimer = Time.time;
+            leftHand.SetActive(true);
             if (Physics.Raycast(ray, out hit, 5))
             {
                 if (hit.collider.name == "GreetingMonkey")
@@ -50,8 +54,8 @@ public class CameraScript : MonoBehaviour
         // if left click
         if (Input.GetMouseButtonDown(0))
         {
-            leftClickTimer = Time.time;
-            hand.SetActive(true);
+            rightHandTimer = Time.time;
+            rightHand.SetActive(true);
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.name == "LightHouseMonkey")
@@ -77,10 +81,15 @@ public class CameraScript : MonoBehaviour
 
     private void HandTimer()
     {
-        if (leftClickTimer > 0 && Time.time - leftClickTimer >= 1)
+        if (leftHandTimer > 0 && Time.time - leftHandTimer >= 1)
         {
-            leftClickTimer = 0;
-            hand.SetActive(false);
+            leftHandTimer = 0;
+            leftHand.SetActive(false);
+        }
+        if (rightHandTimer > 0 && Time.time - rightHandTimer >= 1)
+        {
+            rightHandTimer = 0;
+            rightHand.SetActive(false);
         }
     }
 }
